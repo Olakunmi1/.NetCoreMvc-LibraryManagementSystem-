@@ -1,0 +1,46 @@
+﻿
+@model IEnumerable<LibraryCardViewModel>
+
+@{
+    ViewBag.Title = "LibraryCard Index";
+}
+
+@*
+    The folowing scripts and styles defined below are for styling
+*@
+
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+}
+
+@section Styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+}
+
+<h3>Patron Index</h3>
+<p class="text-danger"> Click the button to create a LibraryCard </p>
+<p><a class="btn btn-primary" role="button" asp-controller="LibraryCard" asp-action="CreateLibraryCard"> LibraryCard </a></p>
+
+<div id="patronIndex">
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp customTable" id="patronIndexTable">
+        <thead>
+            <tr>
+                <th>Library Card Id</th>
+                <th>Overdue Fees</th>
+                <th>Date Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var card in Model)
+            {
+                <tr>
+                    <td>@card.Id</td>
+                    <td>@card.Fees</td>
+                    <td>@card.Fees</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

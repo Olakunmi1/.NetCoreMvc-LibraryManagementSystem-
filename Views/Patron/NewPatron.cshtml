@@ -1,0 +1,71 @@
+﻿@model NewPatronViewModel
+
+@{
+    ViewBag.Title = "New Patron";
+}
+
+@*
+    The folowing scripts and styles defined below are for styling
+*@
+
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+}
+
+@section Styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+}
+
+
+<h1> New Patron</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <p class="text-danger">Incase you dont have a libraryCardId, Click the button</p>
+        </div>
+        <p><a asp-controller="LibraryCard" asp-action="CreateLibraryCard" class="btn btn-primary"> CardId </a></p>
+        <div> <p class="text-danger"> To Create a BracnhId, Click the button</p></div>
+        <p><a asp-controller="Branch" asp-action="NewBranch" class="btn btn-primary"> BranchId </a></p>
+
+        <form asp-controller="Patron" asp-action="NewPatron" method="post" class="mt-3">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group row">
+                <label asp-for="FirstName" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-8"> <input asp-for="FirstName" class="form-control" /></div>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="LastName" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-8"> <input asp-for="LastName" class="form-control" /></div>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Address" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-8"> <input asp-for="Address" class="form-control" /></div>
+                @*No validation for Adresss*@
+            </div>
+            <div class="form-group row">
+                <label asp-for="DateOFBirth" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-8"> <input asp-for="DateOFBirth" class="form-control" placeholder="mm/dd/YYY" /></div>
+                <span asp-validation-for="DateOFBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Gender" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-8"> <input asp-for="Gender" class="form-control" placeholder="Male/Female" /></div>
+                @*No validation for telephone*@
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="TelephoneNo" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-8"> <input asp-for="TelephoneNo" class="form-control" placeholder="+234-PhoneNo" /></div>
+                @*No validation for telephone*@
+            </div>
+          
+            <div>
+                <button class="btn btn-primary" type="submit">create</button>
+            </div>
+        </form>
+    </div>
+</div>

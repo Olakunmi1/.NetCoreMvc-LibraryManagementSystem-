@@ -1,0 +1,54 @@
+﻿@model CheckoutViewModel
+@*@{
+        ViewBag.Title = @Model.Title;
+    }*@
+
+@*@model is the model directive*@
+
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+}
+
+@section Styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+}
+
+
+<div class="container">
+    <div class="header clearfix detailHeading">
+        <h2 class="text-muted">Place Hold on Library Item</h2>
+    </div>
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <p id="itemTitle">@Model.Title</p>
+                    <img class="detailImage" src="@Model.ImageUrl" />
+                </div>
+            </div>
+            @*you could also use tag helpers.*@
+
+            <div class="col-md-9">
+                <p>There are currently @Model.HoldCount holds in the queue for this item.</p>
+
+                <form asp-controller="Catalog" asp-action="Hold" method="post" class="mt-3">
+                    <input asp-for="AssetId" type="hidden" />
+                    <div class="form-group row">
+                        Please insert a Library Card ID.
+
+                        <div class="col-sm-5"> <input asp-for="LibraryCardId" class="form-control"/></div>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-info btn-lg" type="submit">Place Hold</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

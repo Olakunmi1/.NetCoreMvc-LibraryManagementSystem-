@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace LibraryManagement.ViewModels.Patron
+{
+    public class PatronIndexViewModel
+    {
+        public IEnumerable<PatronDetailViewModel> patrons { get; set; }
+
+    }
+}
