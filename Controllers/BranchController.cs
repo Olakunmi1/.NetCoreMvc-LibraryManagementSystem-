@@ -26,6 +26,11 @@ namespace LibraryManagement.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
+        public BranchController(ILibraryBranch branch)
+        {
+            _branch = branch;
+        }
+
         //Serves the NewBranch page
         [HttpGet]
         public IActionResult NewBranch()

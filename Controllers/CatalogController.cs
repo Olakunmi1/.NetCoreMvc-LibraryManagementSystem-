@@ -106,7 +106,16 @@ namespace LibraryManagement.Controllers
         public IActionResult CheckOut(int AssetId, int LibraryCardId)
         {
             _checkoutsService.CheckoutItem(AssetId, LibraryCardId);
-            return RedirectToAction("Detail", new { id = AssetId });
+           return RedirectToAction("Detail", new { id = AssetId });
+           
+        }
+
+        //Responds to the checkIN operation
+        // CheckIn = Return a book 
+        public IActionResult CheckIn(int Id)
+        {
+            _checkoutsService.CheckInItem(Id);
+            return RedirectToAction("Detail", new { Id });
         }
 
         //Also serves the Hold page 
@@ -134,13 +143,6 @@ namespace LibraryManagement.Controllers
             return RedirectToAction("Detail", new { id = AssetId });
         }
 
-        public IActionResult CheckIn(int Id)
-        {
-            _checkoutsService.CheckInItem(Id);
-            return RedirectToAction("Detail", new { Id });
-        }
-
-        //CheckIn = about to return a book
         public IActionResult MarkLost(int id)
         {
             _checkoutsService.MarkLost(id);
