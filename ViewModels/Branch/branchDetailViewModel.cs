@@ -18,6 +18,7 @@ namespace LibraryManagement.ViewModels.Branch
         public int NumberOfAssets { get; set; }
         public decimal TotalAssetValue { get; set; }
         public string ImageUrl { get; set; }
+
         public IEnumerable<string> HoursOpen { get; set; }
     }
 }

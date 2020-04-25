@@ -3,6 +3,7 @@ using LibraryData;
 using LibraryData.Model;
 using LibraryManagement.Controllers;
 using LibraryManagement.ViewModels.Branch;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
@@ -13,7 +14,7 @@ using Xunit;
 
 namespace LibraryManagement.Test
 {
-   public class BranchControllerTest
+    public class BranchControllerTest
     {
 
         private static LibraryBranch GetBranchById()
@@ -67,12 +68,13 @@ namespace LibraryManagement.Test
             // Arrange ---intializing the classes needed, and Setup up Mock
 
             var mockbranchservice = new Mock<ILibraryBranch>();
+            var mockbranch = new Mock<IWebHostEnvironment>();
             mockbranchservice.Setup(x => x.GetAll()).Returns(GetAllBranches());
 
-            var controller = new BranchController(mockbranchservice.Object);
+            var controller = new BranchController(mockbranchservice.Object, mockbranch.Object);
 
             //Act  --- Calling on the method to be tested 
-            
+
             var result = controller.Index();
 
             //Assert  --- i.e we need to start testing d outcome
@@ -88,8 +90,9 @@ namespace LibraryManagement.Test
         {
             //Arrange
             var mockbranchservice = new Mock<ILibraryBranch>();
+            var mockbranch = new Mock<IWebHostEnvironment>();
             mockbranchservice.Setup(x => x.GetById(678)).Returns(GetBranchById());
-            var controller = new BranchController(mockbranchservice.Object);
+            var controller = new BranchController(mockbranchservice.Object, mockbranch.Object);
 
             //Act
             var result = controller.Detail(678);
@@ -109,8 +112,9 @@ namespace LibraryManagement.Test
         public void Should_Return_Type_BranchIndexModel()
         {
             var mockBranchService = new Mock<ILibraryBranch>();
+            var mockbranch = new Mock<IWebHostEnvironment>();
             mockBranchService.Setup(r => r.GetAll()).Returns(GetAllBranches());
-            var controller = new BranchController(mockBranchService.Object);
+            var controller = new BranchController(mockBranchService.Object, mockbranch.Object);
 
             var result = controller.Index();
 
@@ -122,8 +126,9 @@ namespace LibraryManagement.Test
         public void Should_Return_Type_BranchDetailModel()
         {
             var mockBranchService = new Mock<ILibraryBranch>();
+            var mockbranch = new Mock<IWebHostEnvironment>();
             mockBranchService.Setup(r => r.GetById(678)).Returns(GetBranchById());
-            var controller = new BranchController(mockBranchService.Object);
+            var controller = new BranchController(mockBranchService.Object, mockbranch.Object);
 
             var result = controller.Detail(678);
 
